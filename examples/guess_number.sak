@@ -1,0 +1,11 @@
+include random
+Int secretNumber = random.randint(1,100)
+Int result = 0
+while result != secretNumber:
+    out("Guess a number(1~100): ", end='')
+    result = in()
+    if result < secretNumber:
+        out("Too low.")
+    elif result > secretNumber:
+        out("Too hight.")
+out("You've got that right!")
