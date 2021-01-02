@@ -6,9 +6,9 @@ decorator_names = ['@Template', '@Override',
                    '@Overload', '@Target', '@Decorator']
 package_names = ['random', 'time', 'json', 'xml', 'hash']
 operators = [
-    '+', '-', '*', '/', '**', '%',  # calculate
+    '+', '-', '*', '/', '**', '%',     # calculate
     '==', '!=', '>', '<', '>=', '<=',  # compare
-    'and', 'or', 'in', 'not',  # logical
+    'and', 'or', 'in', 'not',          # logical
     '=', '+=', '-=', '*=', '/=', '%='  # copy
 ]
 delimiters = ['.', '\'', '"', ',', '(', ')', '[', ']', '{', '}']
