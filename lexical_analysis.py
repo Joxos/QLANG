@@ -1,58 +1,61 @@
 from reserved_names import reserved_names
-from math import gcd
 
 
-def token_finder(word):
-    if word in reserved_names['types']:
-        return 'type'
-    elif word in reserved_names['keywords']:
-        return 'keyword'
-    elif word in reserved_names['packages']:
-        return 'package'
-    elif word in reserved_names['operators']:
-        return 'operator'
-    elif word in reserved_names['decorators']:
-        return 'decorator'
-    elif word in reserved_names['delimiters']:
-        return 'delimiter'
-    else:
-        try:
-            int(word)
-        except:
-            return 'identifier'
+class Token(object):
+    def __init__(self, token):
+        self.token = token
+        self.type = self.find_token(self.token)
+
+    def find_token(self, word):
+        if word in reserved_names['types']:
+            return "keyword"
+        elif word in reserved_names['keywords']:
+            return 'keyword'
+        elif word in reserved_names['packages']:
+            return 'package'
+        elif word in reserved_names['operators']:
+            return 'operator'
+        elif word in reserved_names['decorators']:
+            return 'decorator'
+        elif word in reserved_names['delimiters']:
+            return 'delimiter'
         else:
-            return 'number'
+            try:
+                int(word)
+            except:
+                return 'identifier'
+            else:
+                return 'number'
+
+class Line(object):
+    def __init__(self, line, line_number):
+        self.rare_line = line
+        self.indents = len(line)-len(line.lstrip())
+        self.line_number = line_number
+
+    def tokenize(self):
+        delimiters = reserved_names['operators']+reserved_names['delimiters']
+        current = ""
+        for char in self.rare_line.lstrip():
+            if char == ' ' and current != '':
+                yield Token(current.lstrip())
+                current = ""
+            elif char in delimiters:
+                if current:
+                    yield Token(current.lstrip())
+                yield Token(char)
+                current = ""
+            else:
+                current += char
+        # if something were left in the variable word
+        if current:
+            yield Token(current.lstrip())
 
 
-def split_a_line(line):
-    delimiters = reserved_names['operators']+reserved_names['delimiters']
-    words = []
-    word = ""
-    for char in line:
-        if char == ' ' and word != '':
-            words.append([word, token_finder(word)])
-            word = ""
-        elif char in delimiters:
-            if word:
-                words.append([word, token_finder(word)])
-            words.append([char, token_finder(char)])
-            word = ""
-        else:
-            word += char
-    if word:
-        words.append([word, token_finder(word)])
-    return words
-
-
-def detect_indent(line):
-    return len(line)-len(line.lstrip())
-
-
-def lexical_analysis(msg):
-    res = []
+def tokenize(file_name):
     line_number = 1
-    for line in msg.split('\n'):
-        res.append((detect_indent(line),
-                    split_a_line(line.lstrip()), line_number))
+    with open(file_name, 'r') as reader:
+        content = reader.read()
+    for line in content.split('\n'):
+        yield Line(line, line_number)
         line_number += 1
-    return res
