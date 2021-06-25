@@ -1,0 +1,13 @@
+# Declare a variable.
+var name
+# Assign a value for it.
+name = "Joxos"
+# Define a variable.
+var age = 14
+# Declare a funtion.
+func add(var a, var b) -> Decimal
+func minus(var c, var d) -> Decimal
+# Define a funtion.
+func add(var a, var b) -> Decimal {
+    return a+b
+}

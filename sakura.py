@@ -1,18 +1,13 @@
-from command_line_helper import args
-from lexical_analysis import tokenize
-from runtime import Runtime
+import argparse
 
+import antlr4
+from loguru import logger
+from Lexer.SakuraLexer import SakuraLexer
+from Lexer.SakuraParser import SakuraParser
 
-runtime = Runtime()
-for current in tokenize(args.file_name):
-    runtime.execute(current)
+parser = argparse.ArgumentParser(description="Interpreter for Sakura.")
+parser.add_argument('file_name', type=str, help="file to compile")
+args = parser.parse_args()
 
-# for current in tokenize(args.file_name):
-#     print("Line number:", current.line_number)
-#     print("Indent spaces:", current.indents)
-#     print("Rare line:", current.rare_line)
-#     print("Tokens:")
-#     for token in current.tokenize():
-#         print(token.token, end=':')
-#         print(token.type)
-#     print()
+logger.info(f"File name: {args.file_name}")
+input_stream = antlr4.FileStream(args.file_name)

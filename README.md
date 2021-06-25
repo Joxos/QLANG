@@ -1,20 +1,12 @@
-# Sakura 樱花语
+# QLANG（Qi Language）
 
 ## 语法
 
-变量声明/定义：
+var *var_name*;  # declare a variable
 
-```sakura
-<Type> <variable_name>( = <value>)
-```
+var *var_name* = *value*;  # define a variable
 
-## 运行
-
-**注：需要安装Python3**
-
-```bash
-sakura <filename>
-```
+func *func_name*(*var a, var b~=Decimal, var c=3*) -> *ReturnType* { pass; }  # This is a typical example of defining a funtion. Arguments can be nothing but the braces cannot be omitted. But if a function does not return a value, you can omit the arrow.
 
 ## 命名规范
 

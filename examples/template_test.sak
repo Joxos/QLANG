@@ -1,3 +1,0 @@
-@Template(class T1, class T2)
-(T1+T2) add(T1 a, T2 b):
-    return a+b
