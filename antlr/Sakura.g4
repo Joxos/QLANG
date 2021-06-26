@@ -69,7 +69,7 @@ String
 
 // Parsers
 block
-    : (PASS|Comment|decvar|defvar|assvar|decfunc|funcReturn|defunc|callfunc)*;
+    : (PASS SEMI_COLON|Comment|decvar|defvar|assvar|decfunc|funcReturn|defunc|callfunc)*;
 
 literalValue
     : (Interger|Identifier|String|Decimal);
@@ -85,8 +85,8 @@ assvar
 // function
 funcArgs
     :
-    ((VAR Identifier|VAR Identifier ASSIGN literalValue) COMMA)*
-    (VAR Identifier|VAR Identifier ASSIGN literalValue);
+    (((VAR Identifier|VAR Identifier ASSIGN literalValue) COMMA)*
+    (VAR Identifier|VAR Identifier ASSIGN literalValue)| );
 funcHead
     : FUNC Identifier OPEN_PAREN funcArgs CLOSE_PAREN (ARROW Identifier)?;
 decfunc
@@ -96,4 +96,4 @@ funcReturn
 defunc
     : funcHead OPEN_BRACE block CLOSE_BRACE;
 callfunc
-    : Identifier OPEN_BRACE (literalValue COMMA)* literalValue CLOSE_BRACE SEMI_COLON;
+    : Identifier OPEN_PAREN ((literalValue COMMA)* literalValue| ) CLOSE_PAREN SEMI_COLON;
