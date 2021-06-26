@@ -26,6 +26,15 @@ class SakuraListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SakuraParser#expr.
+    def enterExpr(self, ctx:SakuraParser.ExprContext):
+        pass
+
+    # Exit a parse tree produced by SakuraParser#expr.
+    def exitExpr(self, ctx:SakuraParser.ExprContext):
+        pass
+
+
     # Enter a parse tree produced by SakuraParser#decvar.
     def enterDecvar(self, ctx:SakuraParser.DecvarContext):
         pass

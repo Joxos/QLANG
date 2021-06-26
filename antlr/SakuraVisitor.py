@@ -19,6 +19,11 @@ class SakuraVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by SakuraParser#expr.
+    def visitExpr(self, ctx:SakuraParser.ExprContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by SakuraParser#decvar.
     def visitDecvar(self, ctx:SakuraParser.DecvarContext):
         return self.visitChildren(ctx)

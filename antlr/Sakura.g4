@@ -3,6 +3,7 @@ grammar Sakura;
 
 // Keywords
 VAR : 'var';
+CONST : 'const';
 FUNC : 'func';
 PASS : 'pass';
 RETURN : 'return';
@@ -67,33 +68,48 @@ String
     : '"' ~["\\\r\n]+? '"';
 
 
-// Parsers
+// parsers
 block
-    : (PASS SEMI_COLON|Comment|decvar|defvar|assvar|decfunc|funcReturn|defunc|callfunc)*;
+    :
+    (PASS SEMI_COLON
+    | Comment SEMI_COLON
+    | decvar SEMI_COLON
+    | defvar SEMI_COLON
+    | assvar SEMI_COLON
+    | decfunc SEMI_COLON
+    | funcReturn SEMI_COLON
+    | defunc
+    | callfunc SEMI_COLON
+    )*;
 
+// expression
 literalValue
     : (Interger|Identifier|String|Decimal);
+expr
+    : literalValue
+    | callfunc
+    | expr POWER expr
+    | expr (STAR|DIV) expr
+    | expr (ADD|MINUS) expr;
 
 // variable
 decvar
-    : VAR Identifier SEMI_COLON;
+    : VAR Identifier;
 defvar
-    : VAR Identifier ASSIGN literalValue SEMI_COLON;
+    : CONST? VAR Identifier ASSIGN expr;
 assvar
-    : Identifier ASSIGN literalValue SEMI_COLON;
+    : Identifier ASSIGN expr;
 
 // function
 funcArgs
-    :
-    (((VAR Identifier|VAR Identifier ASSIGN literalValue) COMMA)*
-    (VAR Identifier|VAR Identifier ASSIGN literalValue)| );
+    : (((decvar|defvar) COMMA)* (decvar|defvar))?;
 funcHead
     : FUNC Identifier OPEN_PAREN funcArgs CLOSE_PAREN (ARROW Identifier)?;
 decfunc
-    : funcHead SEMI_COLON;
+    : funcHead;
 funcReturn
-    : RETURN literalValue SEMI_COLON;
+    : RETURN expr;
 defunc
     : funcHead OPEN_BRACE block CLOSE_BRACE;
 callfunc
-    : Identifier OPEN_PAREN ((literalValue COMMA)* literalValue| ) CLOSE_PAREN SEMI_COLON;
+    : Identifier OPEN_PAREN ((expr COMMA)* expr)? CLOSE_PAREN;
