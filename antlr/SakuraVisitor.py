@@ -69,5 +69,45 @@ class SakuraVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by SakuraParser#ifcon.
+    def visitIfcon(self, ctx:SakuraParser.IfconContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SakuraParser#elifcon.
+    def visitElifcon(self, ctx:SakuraParser.ElifconContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SakuraParser#elsecon.
+    def visitElsecon(self, ctx:SakuraParser.ElseconContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SakuraParser#fullIf.
+    def visitFullIf(self, ctx:SakuraParser.FullIfContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SakuraParser#switchcon.
+    def visitSwitchcon(self, ctx:SakuraParser.SwitchconContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SakuraParser#casecon.
+    def visitCasecon(self, ctx:SakuraParser.CaseconContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SakuraParser#defaultcon.
+    def visitDefaultcon(self, ctx:SakuraParser.DefaultconContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by SakuraParser#fullSwitch.
+    def visitFullSwitch(self, ctx:SakuraParser.FullSwitchContext):
+        return self.visitChildren(ctx)
+
+
 
 del SakuraParser

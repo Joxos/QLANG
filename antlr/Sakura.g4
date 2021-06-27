@@ -7,6 +7,14 @@ CONST : 'const';
 FUNC : 'func';
 PASS : 'pass';
 RETURN : 'return';
+IF : 'if';
+ELIF : 'elif';
+ELSE : 'else';
+SWITCH : 'switch';
+CASE : 'case';
+DEFAULT : 'default';
+AND : 'and';
+OR : 'or';
 
 // Symbols
 DOT : '.';
@@ -71,8 +79,8 @@ String
 // parsers
 block
     :
-    (PASS SEMI_COLON
-    | Comment SEMI_COLON
+    (
+    ( Comment SEMI_COLON
     | decvar SEMI_COLON
     | defvar SEMI_COLON
     | assvar SEMI_COLON
@@ -80,7 +88,10 @@ block
     | funcReturn SEMI_COLON
     | defunc
     | callfunc SEMI_COLON
-    )*;
+    | fullIf
+    | fullSwitch
+    )*
+    | PASS SEMI_COLON);
 
 // expression
 literalValue
@@ -89,8 +100,11 @@ expr
     : literalValue
     | callfunc
     | expr POWER expr
-    | expr (STAR|DIV) expr
-    | expr (ADD|MINUS) expr;
+    | expr (STAR|DIV|MOD) expr
+    | expr (ADD|MINUS) expr
+    | expr (EQUALS|NOT_EQ) expr
+    | expr AND expr
+    | expr OR expr;
 
 // variable
 decvar
@@ -113,3 +127,23 @@ defunc
     : funcHead OPEN_BRACE block CLOSE_BRACE;
 callfunc
     : Identifier OPEN_PAREN ((expr COMMA)* expr)? CLOSE_PAREN;
+
+// if
+ifcon
+    : IF expr OPEN_BRACE block CLOSE_BRACE;
+elifcon
+    : ELIF expr OPEN_BRACE block CLOSE_BRACE;
+elsecon
+    : ELSE OPEN_BRACE block CLOSE_BRACE;
+fullIf
+    : ifcon elifcon* elsecon?;
+
+// switch
+switchcon
+    : SWITCH expr OPEN_BRACE block CLOSE_BRACE;
+casecon
+    : CASE expr OPEN_BRACE block CLOSE_BRACE;
+defaultcon
+    : DEFAULT OPEN_BRACE block CLOSE_BRACE;
+fullSwitch
+    : switchcon casecon* defaultcon?;

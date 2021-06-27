@@ -116,5 +116,77 @@ class SakuraListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SakuraParser#ifcon.
+    def enterIfcon(self, ctx:SakuraParser.IfconContext):
+        pass
+
+    # Exit a parse tree produced by SakuraParser#ifcon.
+    def exitIfcon(self, ctx:SakuraParser.IfconContext):
+        pass
+
+
+    # Enter a parse tree produced by SakuraParser#elifcon.
+    def enterElifcon(self, ctx:SakuraParser.ElifconContext):
+        pass
+
+    # Exit a parse tree produced by SakuraParser#elifcon.
+    def exitElifcon(self, ctx:SakuraParser.ElifconContext):
+        pass
+
+
+    # Enter a parse tree produced by SakuraParser#elsecon.
+    def enterElsecon(self, ctx:SakuraParser.ElseconContext):
+        pass
+
+    # Exit a parse tree produced by SakuraParser#elsecon.
+    def exitElsecon(self, ctx:SakuraParser.ElseconContext):
+        pass
+
+
+    # Enter a parse tree produced by SakuraParser#fullIf.
+    def enterFullIf(self, ctx:SakuraParser.FullIfContext):
+        pass
+
+    # Exit a parse tree produced by SakuraParser#fullIf.
+    def exitFullIf(self, ctx:SakuraParser.FullIfContext):
+        pass
+
+
+    # Enter a parse tree produced by SakuraParser#switchcon.
+    def enterSwitchcon(self, ctx:SakuraParser.SwitchconContext):
+        pass
+
+    # Exit a parse tree produced by SakuraParser#switchcon.
+    def exitSwitchcon(self, ctx:SakuraParser.SwitchconContext):
+        pass
+
+
+    # Enter a parse tree produced by SakuraParser#casecon.
+    def enterCasecon(self, ctx:SakuraParser.CaseconContext):
+        pass
+
+    # Exit a parse tree produced by SakuraParser#casecon.
+    def exitCasecon(self, ctx:SakuraParser.CaseconContext):
+        pass
+
+
+    # Enter a parse tree produced by SakuraParser#defaultcon.
+    def enterDefaultcon(self, ctx:SakuraParser.DefaultconContext):
+        pass
+
+    # Exit a parse tree produced by SakuraParser#defaultcon.
+    def exitDefaultcon(self, ctx:SakuraParser.DefaultconContext):
+        pass
+
+
+    # Enter a parse tree produced by SakuraParser#fullSwitch.
+    def enterFullSwitch(self, ctx:SakuraParser.FullSwitchContext):
+        pass
+
+    # Exit a parse tree produced by SakuraParser#fullSwitch.
+    def exitFullSwitch(self, ctx:SakuraParser.FullSwitchContext):
+        pass
+
+
 
 del SakuraParser
