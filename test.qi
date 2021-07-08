@@ -1,0 +1,54 @@
+# declareVariable
+name@String;
+const u1s1@String;
+@testDecorator() __test__@auto;
+# defineVariable
+message@String = "Hello world!";
+result@Decimal = a+b/c*d**e;
+# assignVariable
+message = "Cheer!";
+
+# functionCall
+print("Now I'm ", add(age,1), " years old.");
+# defineFunction
+add(a@Decimal=1, b@Decimal=1) -> Decimal {
+    # functionReturn
+    return a+b;
+}
+
+# fullIf
+if a == test1 {
+    pass;
+} elif b == test2 and a == test3 {
+    pass;
+} elif a == b == c {
+    pass;
+} else {
+    pass;
+}
+
+# fullEnumerate
+enumerate name {
+    case "Leo" or "Gary" {
+        print("Hello Python world!");
+    }
+    case "Joxos" {
+        print("Hello QLANG world!");
+    }
+    default {
+        print("Hello world!");
+    }
+}
+
+# whileLoop
+while times > 0 {
+    times = times - 1;
+}
+
+# defineDecorator
+@repeat(times@Interger=2) {
+    while times!=0 {
+        times=times-1;
+        # target.call();
+    }
+}

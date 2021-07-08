@@ -15,9 +15,9 @@
 python -m nuitka --remove-output --output-dir=build --clang --follow-imports --show-progress --show-scons .\sakura.py
 ```
 
-编译词/语法分析器：
+编译ANTLR：
 
 ```bash
-java -jar .\antlr-4.9.2-complete.jar -Dlanguage=Python3 -visitor .\Sakura.g4
+java -jar ./antlr-4.9.2-complete.jar -Dlanguage=Python3 -no-listener -visitor ./QLANG.g4
 ```
 
